@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -8,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 
 
-############## Train 데이터 로드 및 전처리 (자유롭게 수정) ##############
+############## Train 데이터 로드 및 전처리 ##############
 # Train 데이터 로드
 train_data = np.load("train.npz", allow_pickle=True)
 train_images = train_data["images"]
@@ -39,9 +37,9 @@ pca = PCA(n_components=100, random_state=5758)  # 주성분 100개로 축소
 X_train_pca = pca.fit_transform(X_train_scaled)
 X_val_pca = pca.transform(X_val_scaled)
 X_test_pca = pca.transform(X_test_scaled)
-############## Train 데이터 로드 및 전처리 (자유롭게 수정) ##############
+############## Train 데이터 로드 및 전처리 ##############
 
-############## 모델 선언 및 학습 (모델 자유롭게 수정) ##############
+############## 모델 선언 및 학습 ##############
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
@@ -76,7 +74,7 @@ elif rf_val_acc >= logistic_val_acc and rf_val_acc >= svm_val_acc:
 else:
     model = svm_model
     print("Best Model: SVM with Validation Accuracy:", svm_val_acc)
-############## 모델 선언 및 학습 (모델 자유롭게 수정) ##############
+############## 모델 선언 및 학습 ##############
 
 ############## 내부 테스트 데이터로 평가 ##############
 if model == svm_model:
@@ -107,7 +105,7 @@ X_test_ext = scaler.transform(X_test_ext)  # 동일한 스케일러를 외부 �
 X_test_ext = pca.transform(X_test_ext)  # 동일한 PCA 모델을 사용해 차원 축소
 ############## Train 데이터 전처리 코드 적용 ##############
 
-############## Test 데이터에 예측 수행 (코드 수정 X) ##############
+############## Test 데이터에 예측 수행 ##############
 test_predictions = model.predict(X_test_ext)
 
 # 예측 결과 저장
